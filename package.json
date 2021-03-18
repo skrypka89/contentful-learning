@@ -18,7 +18,8 @@
     "build:release:production": "yarn && (cross-env APP_ENV=production yarn build:prod)",
     "deploy:firebase:staging": "firebase deploy --only hosting:web-stage",
     "deploy:firebase:production": "firebase deploy --only hosting:web-prod",
-    "lint": "eslint \"app/**/*.ts\""
+    "lint": "eslint \"app/**/*.ts\"",
+    "contentful": "node ./getContentful.js"
   },
   "dependencies": {
     "@zajno/common": "git+https://github.com/Zajno/common-utils.git#v1.0.4",
@@ -50,6 +51,7 @@
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
+    "contentful": "^8.2.0",
     "copy-webpack-plugin": "^8.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.1.3",
