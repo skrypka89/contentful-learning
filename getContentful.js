@@ -22,8 +22,14 @@ const deleteJsons = p => {
 };
 const createJsons = entry =>
     entry.items.forEach(item => {
-        const json = JSON.stringify(item);
-        fs.writeFileSync(pathResolve(`json/${item.fields.name}.json`), json);
+        const obj = {
+            id: item.sys.id,
+            revision: item.sys.revision,
+            createdAt: item.sys.createdAt,
+            fields: item.fields
+        };
+        const json = JSON.stringify(obj);
+        fs.writeFileSync(pathResolve(`json/${obj.fields.name}.json`), json);
     })
 ;
 
