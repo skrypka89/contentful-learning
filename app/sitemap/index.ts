@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import Pages, { SitePage, PageOutput } from './pages';
 import { Hostname, combineUrlWithHostname } from './hostname';
-import { AllLocales } from './copyright';
+import { AllLocales, HomeCopyright } from './copyright';
 import { getCopyForLocale as getCommonCopyForLocale } from './common';
 import type webpack from 'webpack';
+import caseAll from './../../json/index';
 
 export type SitePageOutput = Omit<SitePage, 'i18n'> & {
     canonical: string,
@@ -75,9 +76,27 @@ Pages.forEach(p => {
     });
 });
 
+caseAll.forEach(c => {
+   return PagesFlatten.push({
+        id: 'home',
+        entryPoint: './app/scripts/pages/homePage.ts',
+        templateName: 'app/html/index.ejs',
+        output: {
+            path: 'index.html',
+            href: '/',
+            title: 'Zajno | Digital Design Agency',
+            description: 'Full-service digital design and development agency specializing in UX/UI design, crafting thought-out personalized experiences for web and mobile.',
+            image: 'zajno.png',
+            locale: HomeCopyright.default,
+            copy: HomeCopyright[HomeCopyright.default],
+        }
+    });
+});
+
 const ApplicationEntryPoints = (function () {
     const result: webpack.EntryObject = {
         polyfills: './app/scripts/polyfills',
+        home: './app/scripts/pages/homePage.ts'
     };
 
     Pages.forEach(item => {
