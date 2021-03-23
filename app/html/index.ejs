@@ -8,28 +8,16 @@
     const Locale = page.output.locale;
     const Strings = page.output.copy;
     const BaseUrl = page.output.href;
+    const allPages =  (htmlWebpackPlugin && htmlWebpackPlugin.options.allPage)
     const logoURL = require('assets/img/logo.png');
 
     const renderIndex = require('../js/utils/renderIndex')
-    const contentfulPage = {
-        id: '12g2nB5lJszjoYPXnGw41a',
-        revision: 1,
-        createdAt: '2021-03-18T14:54:40.632Z',
-        name: 'Ahmed',
-        birthday: '2000-03-01',
-        currentLocation: {
-            lon: 67.16357091076993,
-            lat: 24.95288171982234
-        },
-        company: 'Ahmed & Co',
-        jobPosition: 'Director',
-        description: 'Young director of his IT company.'
-    }
+
 %>
 
 <main id="main" data-page-id="home">
-    <section class="hero-section" data-postid="<%= contentfulPage.id %>">
-        <%= renderIndex.heroSectionRender(contentfulPage) %>
+    <section class="hero-section" data-postid="">
+        <%= renderIndex.listPosts(allPages) %>
     </section>
 </main>
 

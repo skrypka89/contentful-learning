@@ -21,6 +21,7 @@ export type PageOutput<TCopy = any> = {
     locale: Locales,
     /** page's copy, usually a structured object specific for this page type */
     copy: TCopy,
+    status?: string,
 };
 
 export type SitePage<TCopy = any> = {
@@ -38,7 +39,10 @@ export type SitePage<TCopy = any> = {
     i18n?: Partial<PageOutput<TCopy>>[],
 };
 
-const Home: SitePage<HomeCopyrightShape> = {
+const listPage = caseAll
+
+
+const Home: SitePage = {
     id: 'home',
     entryPoint: './app/scripts/pages/homePage.ts',
     templateName: 'app/html/index.ejs',
@@ -48,8 +52,8 @@ const Home: SitePage<HomeCopyrightShape> = {
         title: 'Zajno | Digital Design Agency',
         description: 'Full-service digital design and development agency specializing in UX/UI design, crafting thought-out personalized experiences for web and mobile.',
         image: 'zajno.png',
-        locale: HomeCopyright.default,
-        copy: HomeCopyright[HomeCopyright.default],
+        locale: undefined,
+        copy: listPage,
     },
 
 //     // TODO: Add what needed
@@ -87,6 +91,7 @@ const NotSupported: SitePage = {
         image: 'zajno.png',
         locale: 'en',
         copy: undefined,
+        status: 'case',
     },
 };
 

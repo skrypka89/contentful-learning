@@ -13,6 +13,7 @@ import * as sitemapData from './app/sitemap';
 /* global process */
 
 const pathResolve = helpers.pathResolve;
+const dataPage = sitemapData.PagesFlatten
 
 type GeneratorFilename = webpack.Configuration['output']['assetModuleFilename'];
 
@@ -216,9 +217,9 @@ const siteConfig = (env: any): webpack.Configuration => {
                 },
             }),
 
-            ...sitemapData.PagesFlatten
+            ...dataPage
                 .filter(p => !p.skipRender)
-                .map(p => htmlBuilder.createHtmlPlugin(p.output.path, p.templateName, p.id, { Page: p })),
+                .map(p => htmlBuilder.createHtmlPlugin(p.output.path, p.templateName, p.id, { Page: p, allPage: dataPage })),
 
             new MiniCssExtractPlugin({
                 filename: `${Filename}.css`,

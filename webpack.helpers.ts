@@ -38,6 +38,7 @@ export class HtmlBuilder {
             chunks: ['polyfills', `${id}`],
             chunksSortMode: 'manual',
             templateParameters: options,
+            ...options
         });
     }
 

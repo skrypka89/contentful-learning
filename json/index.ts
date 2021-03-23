@@ -22,6 +22,7 @@ careers.forEach(c => {
         entryPoint: './app/scripts/pages/casePage.ts',
         templateName: 'app/html/case.ejs',
         skipRender: false,
+        status: 'case',
         output: {
             path: `case${c.id}.html`,
             href: '/',
@@ -34,7 +35,6 @@ careers.forEach(c => {
     };
     caseAll.push(page)
 })
-
 // const caseAll = careers;
 
 export default caseAll;

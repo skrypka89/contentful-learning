@@ -2,9 +2,9 @@
 	const Sitemap = require('sitemap');
 	const { combineUrlWithHostname } = require('sitemap/hostname');
     // get the page directly to hook it into webpack dev build process
-	const page = Sitemap.getPage(Page);
+	const page = Sitemap.getPage(Page) || (htmlWebpackPlugin && htmlWebpackPlugin.options.Page);
 
-	const pageAlts = Sitemap.getPageAlternatives(page.id);
+	const pageAlts = Sitemap.getPageAlternatives(page.id) || undefined;
 
 	const Locale = page.output.locale;
 	const Strings = page.output.copy;
@@ -60,10 +60,10 @@
 	<meta name="twitter:description" content="<%= description %>">
 
 	<!-- i18n alternatives for search engines -->
-	<% pageAlts.links.forEach(p => { const { lang, url } = p  %>
+	<% pageAlts && pageAlts.links.forEach(p => { const { lang, url } = p  %>
 		<link rel="alternate" hreflang="<%= lang %>" href="<%= url %>" />
 	<% }) %>
-	<% if (pageAlts.default) { %>
+	<% if (pageAlts && pageAlts.default) { %>
 	<link rel="alternate" hreflang="x-default" href="<%= pageAlts.default %>" />
 	<% } %>
 

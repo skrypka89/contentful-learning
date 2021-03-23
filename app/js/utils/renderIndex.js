@@ -8,5 +8,18 @@ function heroSectionRender(obj) {
     `;
     return heroSection;
 }
+function listPosts(obj) {
+const casePost = obj.filter((p) => p.status && p.status === 'case');
+  const heroSection = `
+        <ul>
+            ${casePost.map((p) => {
+              return `
+                    <li><a href=/case${p.id}>${p.output.copy?.name}</a></li>
+                `;
+            })}
+        </ul>
+    `;
+  return heroSection;
+}
 
-export { heroSectionRender };
+export { heroSectionRender, listPosts };

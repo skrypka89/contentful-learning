@@ -4,6 +4,8 @@ import { Hostname, combineUrlWithHostname } from './hostname';
 import { AllLocales, HomeCopyright } from './copyright';
 import { getCopyForLocale as getCommonCopyForLocale } from './common';
 import type webpack from 'webpack';
+import caseAll from './../../json';
+
 
 export type SitePageOutput = Omit<SitePage, 'i18n'> & {
     canonical: string,
@@ -11,6 +13,8 @@ export type SitePageOutput = Omit<SitePage, 'i18n'> & {
     isAlternative?: boolean,
     skipRender?: boolean,
 };
+
+var caseAllVar  = caseAll;
 
 type SitemapPageLink = { lang: string, url: string };
 
@@ -78,7 +82,6 @@ Pages.forEach(p => {
 const ApplicationEntryPoints = (function () {
     const result: webpack.EntryObject = {
         polyfills: './app/scripts/polyfills',
-        case: { import: './app/scripts/pages/casePage.ts', dependOn: ['polyfills'] },
     };
 
     Pages.forEach(item => {
@@ -101,18 +104,19 @@ if (process.env.PATH) {
     console.log('[SITEMAP] Generated the following entry points: ', ApplicationEntryPoints);
 }
 
-export function getPage(page: SitePageOutput) {
+export const getPage = (page: SitePageOutput) => {
     const res = page && PagesFlatten.find(p => p.id === page.id
         && (!page.output.locale || page.output.locale === p.output.locale)
         && (page.isAlternative === p.isAlternative)
     );
     if (!res) {
-        throw new Error(`Couldn't load the page '${page.id}' for locale '${page.output.locale}' `);
+        // throw new Error(`Couldn't load the page '${caseAllVar.length}' for locale '${page.output.locale}' `);
+        return undefined
     }
     return res;
 }
 
-export function getPages(page: SitePageOutput) {
+export const getPages = (page: SitePageOutput) => {
     if (!page) {
         return null;
     }
@@ -135,10 +139,12 @@ export function getLocaleHref(page: SitePageOutput, lang: string, preferAlt = fa
 export function getPageAlternatives(pageId: string) {
     const res = PagesAlternatives[pageId];
     if (!res) {
-        throw new Error(`PagesAlternatives[${pageId}] => ${res}`);
+        // throw new Error(`PagesAlternatives[${pageId}] => ${res}`);
+        return undefined
     }
     return res;
 }
+
 
 export {
     Pages,

@@ -1,11 +1,11 @@
 <%
     const Sitemap = require('sitemap');
     // get the page directly to hook it into webpack dev build process
-    const page = Sitemap.getPage(Page);
+    const page = Sitemap.getPage(Page) || (htmlWebpackPlugin && htmlWebpackPlugin.options.Page);
 
-    const Strings = page.common.header;
-    const Locale = page.output.locale;
-    const BaseUrl = page.output.href;
+    // const Strings = page.common.header;
+    // const Locale = page.output.locale;
+    // const BaseUrl = page.output.href;
     const getLocaleHref = (lang) => Sitemap.getLocaleHref(page, lang, true);
 
     // here are all options for the language dropdown
