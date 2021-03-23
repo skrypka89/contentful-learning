@@ -24,7 +24,7 @@ careers.forEach(c => {
         skipRender: false,
         status: 'case',
         output: {
-            path: `case${c.id}.html`,
+            path: `case${c.id}/index.html`,
             href: '/',
             title: 'Zajno | Digital Design Agency',
             description: 'Full-service digital design and development agency specializing in UX/UI design, crafting thought-out personalized experiences for web and mobile.',
