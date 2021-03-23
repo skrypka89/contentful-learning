@@ -1,0 +1,24 @@
+@require('./common/structure/head.ejs')
+@require('./common/header.ejs')
+
+<%
+    const Sitemap = require('sitemap');
+    // get the page directly to hook it into webpack dev build process
+    const page = Sitemap.getPage(Page);
+    const Locale = page.output.locale;
+    const Strings = page.output.copy;
+    const BaseUrl = page.output.href;
+    const logoURL = require('assets/img/logo.png');
+
+    const renderIndex = require('../js/utils/renderIndex')
+
+%>
+
+<main id="main" data-page-id="home">
+    <section class="hero-section" data-postid="<%= Strings.id %>">
+        <%= renderIndex.heroSectionRender(Strings) %>
+    </section>
+</main>
+
+@require('./common/footer.ejs')
+@require('./common/structure/foot.ejs')

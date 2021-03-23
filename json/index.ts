@@ -15,8 +15,27 @@ const careers = [];
 filtrtemplateFiles.forEach(n => {
     careers.push(JSON.parse(fs.readFileSync(`${templateDir}/${n}`, 'utf8')));
 });
+const caseAll = []
+careers.forEach(c => {
+    const page = {
+        id: c.id,
+        entryPoint: './app/scripts/pages/casePage.ts',
+        templateName: 'app/html/case.ejs',
+        skipRender: false,
+        output: {
+            path: `case${c.id}.html`,
+            href: '/',
+            title: 'Zajno | Digital Design Agency',
+            description: 'Full-service digital design and development agency specializing in UX/UI design, crafting thought-out personalized experiences for web and mobile.',
+            image: 'zajno.png',
+            locale: 'en',
+            copy: c,
+        },
+    };
+    caseAll.push(page)
+})
 
-const caseAll = careers;
+// const caseAll = careers;
 
 export default caseAll;
 

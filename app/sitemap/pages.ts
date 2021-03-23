@@ -1,3 +1,4 @@
+import caseAll from './../../json';
 import {
     HomeCopyright,
     Locales,
@@ -37,19 +38,19 @@ export type SitePage<TCopy = any> = {
     i18n?: Partial<PageOutput<TCopy>>[],
 };
 
-// const Home: SitePage<HomeCopyrightShape> = {
-//     id: 'home',
-//     entryPoint: './app/scripts/pages/homePage.ts',
-//     templateName: 'app/html/index.ejs',
-//     output: {
-//         path: 'index.html',
-//         href: '/',
-//         title: 'Zajno | Digital Design Agency',
-//         description: 'Full-service digital design and development agency specializing in UX/UI design, crafting thought-out personalized experiences for web and mobile.',
-//         image: 'zajno.png',
-//         locale: HomeCopyright.default,
-//         copy: HomeCopyright[HomeCopyright.default],
-//     },
+const Home: SitePage<HomeCopyrightShape> = {
+    id: 'home',
+    entryPoint: './app/scripts/pages/homePage.ts',
+    templateName: 'app/html/index.ejs',
+    output: {
+        path: 'index.html',
+        href: '/',
+        title: 'Zajno | Digital Design Agency',
+        description: 'Full-service digital design and development agency specializing in UX/UI design, crafting thought-out personalized experiences for web and mobile.',
+        image: 'zajno.png',
+        locale: HomeCopyright.default,
+        copy: HomeCopyright[HomeCopyright.default],
+    },
 
 //     // TODO: Add what needed
 //     // i18n: [ // looks similar but in future more fields can be different
@@ -57,7 +58,7 @@ export type SitePage<TCopy = any> = {
 //     //     { locale: 'ja', href: '/ja', path: 'ja/index.html', copy: HomeCopyright.ja },
 //     //     { locale: 'ko', href: '/ko', path: 'ko/index.html', copy: HomeCopyright.ko },
 //     // ],
-// };
+};
 
 const Page404: SitePage = {
     id: '404',
@@ -104,11 +105,13 @@ const NoScript: SitePage = {
     },
 };
 
+
 const pages: SitePage[] = [
-    // Home,
+    Home,
     Page404,
     NotSupported,
     NoScript,
+    ... caseAll,
 ];
 
 export default pages;
